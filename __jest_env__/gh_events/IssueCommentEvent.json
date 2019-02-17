@@ -1,0 +1,18 @@
+{
+	"action": "created",
+	"issue": {
+		"html_url": "https://github.com/jbalsas/gh2jira-webhook/issues/1",
+		"id": 327883527,
+		"number": 1,
+		"title": "Test IssueEvent payload (1)",
+		"body": "This is IssueEvent payload"
+	},
+	"comment": {
+		"html_url": "https://github.com/jbalsas/gh2jira-webhook/issues/1#issuecomment-393304133",
+		"body": "You are totally right! I'll get this fixed right away."
+	},
+	"repository": {
+		"name": "gh2jira-webhook",
+		"full_name": "jbalsas/gh2jira-webhook"
+	}
+}

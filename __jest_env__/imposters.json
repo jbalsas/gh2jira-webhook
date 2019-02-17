@@ -1,0 +1,53 @@
+{
+	"imposters": [{
+		"port": 4545,
+		"protocol": "https",
+		"stubs": [{
+			"predicates": [{
+				"and": [{
+						"contains": {
+							"query": {
+								"jql": "GHJIRA-TEST"
+							}
+						}
+					},
+					{
+						"contains": {
+							"query": {
+								"jql": "issues/1"
+							}
+						}
+					}
+				]
+			}],
+			"responses": [{
+				"is": {
+					"statusCode": 200,
+					"body": {
+						"issues": [{
+							"key": "GHJIRA-TEST-1"
+						}]
+					}
+				}
+			}]
+		}, {
+			"predicates": [{
+				"equals": {
+					"method": "GET",
+					"path": "/rest/api/latest/search"
+				}
+			}],
+			"responses": [{
+				"is": {
+					"statusCode": 200,
+					"body": {
+						"startAt": 0,
+						"maxResults": 50,
+						"total": 0,
+						"issues": []
+					}
+				}
+			}]
+		}]
+	}]
+}

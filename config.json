@@ -1,0 +1,63 @@
+{
+	"server": {
+		"development": {
+			"port": 8888
+		},
+		"test": {
+			"port": 8888
+		},
+		"prod": {
+			"port": 80
+		}
+	},
+	"jira": {
+		"connection": {
+			"test": {
+				"base": "rest/api/latest",
+				"host": "localhost",
+				"port": "4545",
+				"protocol": "https",
+				"strictSSL": false
+			},
+			"prod": {
+				"base": "rest/api/latest",
+				"host": "issues.liferay.com",
+				"port": "80",
+				"protocol": "https",
+				"strictSSL": false
+			},
+			"development": {
+				"base": "rest/api/latest",
+				"host": "localhost",
+				"port": "8080",
+				"password": "r3m3mb3r",
+				"protocol": "http",
+				"strictSSL": false,
+				"user": "jbalsas"
+			}
+		},
+		"projects": {
+			"GHJIRA": {
+				"createmeta": {
+					"type": "Task"
+				},
+				"transitions": {
+					"close": "21"
+				}
+			},
+			"IFI": {
+				"createmeta": {
+					"type": "Task"
+				},
+				"transitions": {
+					"close": "31"
+				}
+			}
+		}
+	},
+	"map": {
+		"jbalsas/gh2jira-webhook": "GHJIRA",
+		"jbalsas/gh2jira-webhook-test": "GHJIRA-TEST",
+		"liferay/alloyeditor": "IFI"
+	}
+}

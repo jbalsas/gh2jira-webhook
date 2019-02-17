@@ -1,0 +1,9 @@
+{
+	"statusCode": 200,
+	"body": {
+		"total": 1,
+		"issues": [{
+			"key": "GHJIRA-TEST-1"
+		}]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"action": "opened",
+	"issue": {
+		"html_url": "https://github.com/jbalsas/gh2jira-webhook/issues/1",
+		"id": 327883527,
+		"number": 1,
+		"title": "Test IssueEvent payload (1)",
+		"body": "This is IssueEvent payload"
+	},
+	"repository": {
+		"name": "gh2jira-webhook",
+		"full_name": "jbalsas/gh2jira-webhook"
+	}
+}
