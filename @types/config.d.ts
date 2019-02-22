@@ -10,7 +10,9 @@ interface ConnectionConfig {
 
 interface ProjectConfig {
 	createmeta: {
-		type: string;
+		type: {
+			[entity: string]: string;
+		};
 	};
 	transitions: {
 		[transition: string]: string;

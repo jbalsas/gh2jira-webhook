@@ -21,15 +21,23 @@ export const enum IssueActions {
 	UNPINNED = 'unpinned'
 }
 
+export const enum MilestoneActions {
+	CLOSED = 'closed',
+	CREATED = 'created',
+	DELETED = 'deleted',
+	EDITED = 'edited',
+	OPENED = 'opened'
+}
+
 export const enum PullRequestActions {
 	ASSIGNED = 'assigned',
-	UNASSIGNED = 'unassigned',
-	REVIEW_REQUESTED = 'review_requested',
-	REVIEW_REQUEST_REMOVED = 'review_request_removed',
-	LABELED = 'labeled',
-	UNLABELED = 'unlabeled',
-	OPENED = 'opened',
-	EDITED = 'edited',
 	CLOSED = 'closed',
-	REOPENED = 'reopened'
+	EDITED = 'edited',
+	LABELED = 'labeled',
+	OPENED = 'opened',
+	REOPENED = 'reopened',
+	REVIEW_REQUEST_REMOVED = 'review_request_removed',
+	REVIEW_REQUESTED = 'review_requested',
+	UNASSIGNED = 'unassigned',
+	UNLABELED = 'unlabeled'
 }

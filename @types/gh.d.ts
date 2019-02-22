@@ -20,11 +20,11 @@ declare module 'gh/lib/rest-api-client' {
 		constructor(options: RestApiClientOptions);
 
 		authorize(p: string): string;
-		delete(): ReturnType<typeof request>;
+		delete(url: string, params?: object): ReturnType<typeof request>;
 		encode(uriComponent: string): string;
 		get(url: string, params?: object): ReturnType<typeof request>;
 		post(url: string, params?: object): ReturnType<typeof request>;
-		put(): ReturnType<typeof request>;
+		put(url: string, params?: object): ReturnType<typeof request>;
 		request(
 			method: string,
 			path: string,

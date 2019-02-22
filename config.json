@@ -22,7 +22,7 @@
 			"prod": {
 				"base": "rest/api/latest",
 				"host": "issues.liferay.com",
-				"port": "80",
+				"port": "443",
 				"protocol": "https",
 				"strictSSL": false
 			},
@@ -39,7 +39,10 @@
 		"projects": {
 			"GHJIRA": {
 				"createmeta": {
-					"type": "Task"
+					"type": {
+						"issue": "Task",
+						"milestone": "Task"
+					}
 				},
 				"transitions": {
 					"close": "21"
@@ -47,7 +50,10 @@
 			},
 			"IFI": {
 				"createmeta": {
-					"type": "Task"
+					"type": {
+						"issue": "Task",
+						"milestone": "Epic"
+					}
 				},
 				"transitions": {
 					"close": "31"

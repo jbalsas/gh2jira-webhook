@@ -11,6 +11,12 @@ export function isIssuesEvent(req: express.Request): req is github.IssuesEvent {
 	return req.body.issue;
 }
 
+export function isMilestoneEvent(
+	req: express.Request
+): req is github.MilestoneEvent {
+	return req.body.milestone;
+}
+
 export function isPullRequestEvent(
 	req: express.Request
 ): req is github.PullRequestEvent {

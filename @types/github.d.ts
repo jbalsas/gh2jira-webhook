@@ -2,47 +2,46 @@ import express from 'express';
 import {
 	IssueActions,
 	CommentActions,
-	PullRequestActions
+	PullRequestActions,
+	MilestoneActions
 } from '../app/github/actions';
 
 declare namespace github {
-	export interface Comment {
-		url: string;
-		html_url: string;
-		issue_url: string;
-		id: number;
-		node_id: string;
-		user: github.User;
-		created_at: string;
-		updated_at: string;
+	export interface Comment extends Entity {
 		author_association: string;
 		body: string;
+		created_at: string;
+		issue_url: string;
+		updated_at: string;
+		user: github.User;
 	}
-	export interface Issue {
+	export interface Entity {
+		id: number;
+		node_id: string;
+		html_url: string;
+		url: string;
+	}
+	export interface Issue extends Entity {
 		assignee: object;
 		assigneees: Array<object>;
 		author_association: string;
 		body: string;
 		closed_at: string;
+		comments_url: string;
 		comments: number;
 		created_at: string;
+		events_url: string;
+		labels_url: string;
 		labels: Array<object>;
 		locked: boolean;
-		milestone: string;
-		state: string;
-		updated_at: string;
-		url: string;
-		user: github.User;
-		comments_url: string;
-		events_url: string;
-		html_url: string;
-		id: number;
-		labels_url: string;
-		node_id: string;
+		milestone: github.Milestone;
 		number: number;
-		repository: github.Repository;
 		repository_url: string;
+		repository: github.Repository;
+		state: string;
 		title: string;
+		updated_at: string;
+		user: github.User;
 	}
 	export interface IssueCommentEvent extends express.Request {
 		body: IssueCommentPayload;
@@ -61,39 +60,57 @@ declare namespace github {
 		issue: github.Issue;
 		repository: github.Repository;
 	}
-	export interface PullRequest {
-		url: string;
-		id: number;
-		node_id: string;
-		html_url: string;
-		diff_url: string;
-		patch_url: string;
-		issue_url: string;
-		number: number;
-		state: string;
-		locked: false;
-		title: string;
-		user: User;
-		body: string;
-		created_at: string;
-		updated_at: string;
+	export interface Milestone extends Entity {
 		closed_at: string;
-		merged_at: string;
-		merge_commit_sha: string;
+		closed_issues: number;
+		created_at: string;
+		creator: github.User;
+		description: string;
+		due_on: string;
+		labels_url: string;
+		number: number;
+		open_issues: number;
+		state: string;
+		title: string;
+		updated_at: string;
+	}
+	export interface MilestoneEvent extends express.Request {
+		body: MilestonePayload;
+	}
+	export interface MilestonePayload extends ReadableStream<Uint8Array> {
+		action: MilestoneActions;
+		milestone: github.Milestone;
+		repository: github.Repository;
+	}
+	export interface PullRequest extends Entity {
+		additions: number;
 		assignee: User;
 		author_association: string;
-		merged: boolean;
-		mergeable: boolean;
-		rebaseable: boolean;
-		mergeable_state: string;
-		merged_by: User;
-		comments: number;
-		review_comments: number;
-		maintainer_can_modify: boolean;
-		commits: number;
-		additions: number;
-		deletions: number;
+		body: string;
 		changed_files: number;
+		closed_at: string;
+		comments: number;
+		commits: number;
+		created_at: string;
+		deletions: number;
+		diff_url: string;
+		issue_url: string;
+		locked: false;
+		maintainer_can_modify: boolean;
+		merge_commit_sha: string;
+		mergeable_state: string;
+		mergeable: boolean;
+		merged_at: string;
+		merged_by: User;
+		merged: boolean;
+		number: number;
+		patch_url: string;
+		rebaseable: boolean;
+		review_comments: number;
+		state: string;
+		title: string;
+		updated_at: string;
+		user: User;
 	}
 	export interface PullRequestEvent extends express.Request {
 		body: PullRequestPayload;
@@ -111,24 +128,20 @@ declare namespace github {
 		name: string;
 		url: string;
 	}
-	export interface User {
-		login: string;
-		id: number;
-		node_id: string;
+	export interface User extends Entity {
 		avatar_url: string;
-		gravatar_id: string;
-		url: string;
-		html_url: string;
+		events_url: string;
 		followers_url: string;
 		following_url: string;
 		gists_url: string;
+		gravatar_id: string;
+		login: string;
+		organizations_url: string;
+		received_events_url: string;
+		repos_url: string;
+		site_admin: boolean;
 		starred_url: string;
 		subscriptions_url: string;
-		organizations_url: string;
-		repos_url: string;
-		events_url: string;
-		received_events_url: string;
 		type: string;
-		site_admin: boolean;
 	}
 }

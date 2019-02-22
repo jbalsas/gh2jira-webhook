@@ -16,16 +16,17 @@ import { jira } from '../../../@types/jira';
 import { github } from '../../../@types/github';
 import { ghRepo2JiraProjectKeys } from '../mappings/repo2project';
 import { ghIssueToJiraTypeNames } from '../mappings/issue2type';
+import { GHEntity } from '../../github/entitites';
 
 export async function getCreateMeta(
-	issue: github.Issue,
+	ghEntity: GHEntity,
 	repository: github.Repository
 ): Promise<{
 	issuetype: { id: string };
 	project: { id: string };
 }> {
 	const projectKeys = ghRepo2JiraProjectKeys(repository);
-	const issueTypeNames = ghIssueToJiraTypeNames(issue, repository);
+	const issueTypeNames = ghIssueToJiraTypeNames(ghEntity, repository);
 
 	const response = (await api.get('/issue/createmeta', {
 		qs: {

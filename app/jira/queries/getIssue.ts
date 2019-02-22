@@ -23,17 +23,17 @@ import { ghRepo2JiraProjectKeys } from '../mappings/repo2project';
 import { getCreatedGHMarker } from '../mappings/ghmarker';
 
 export async function getIssue(
-	issue: github.Issue,
+	entity: github.Entity,
 	repository: github.Repository
 ): Promise<jira.Issue> {
 	const query = `project=${ghRepo2JiraProjectKeys(
 		repository
-	)} AND description ~ "${getCreatedGHMarker(issue)
+	)} AND description ~ "${getCreatedGHMarker(entity)
 		.replace('[', '\\\\[')
 		.replace(']', '\\\\]')}"`;
 
 	const response = (await api.get(
-		`/search?jql=${query}`
+		`/search?jql=${encodeURIComponent(query)}`
 	)) as jira.SearchResponse;
 
 	const { issues } = response.body;

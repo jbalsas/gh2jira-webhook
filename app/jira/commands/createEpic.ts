@@ -21,36 +21,27 @@ import { github } from '../../../@types/github';
 import { getCreateMeta } from '../queries/getCreateMeta';
 import { getCreatedGHMarker } from '../mappings/ghmarker';
 import { GHEntity } from '../../github/entitites';
-import { getIssue } from '../queries/getIssue';
-import { jira } from '../../../@types/jira';
 
-export async function createIssue(
-	issue: github.Issue,
+export async function createEpic(
+	milestone: github.Milestone,
 	repository: github.Repository
 ): Promise<any> {
-	const metadata = await getCreateMeta(GHEntity.ISSUE, repository);
+	const metadata = await getCreateMeta(GHEntity.MILESTONE, repository);
 
-	const payload: jira.FieldsPayload = {
+	const payload = {
 		fields: {
 			description: `
-				${issue.body}
+				${milestone.description}
 
-				${getCreatedGHMarker(issue)}
+				${getCreatedGHMarker(milestone)}
 			`,
-			summary: issue.title,
+			summary: milestone.title,
+			customfield_12822: `fi-${repository.name}-${milestone.title}`,
 			...metadata
 		}
 	};
 
-	const milestone = issue.milestone;
-
-	if (milestone) {
-		const epic = await getIssue(milestone, repository);
-
-		if (epic) {
-			payload.fields['customfield_12821'] = epic.key;
-		}
-	}
+	console.log(payload);
 
 	return await api.post('/issue', {
 		body: payload

@@ -45,7 +45,12 @@ declare namespace jira {
 		name: string;
 		hasDefaultValue: boolean;
 		operations: string[];
-		allowedValues: string[];
+		allowedValues: any[];
+	}
+	interface FieldsPayload {
+		fields: {
+			[key: string]: any;
+		};
 	}
 	export interface Issue {
 		expand: string;

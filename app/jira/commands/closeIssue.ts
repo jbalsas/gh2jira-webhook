@@ -32,10 +32,6 @@ export async function closeIssue(
 	const transition = await getTransition(jiraIssue, transitionId);
 
 	const fields = transition.fields;
-	const resolution =
-		fields.resoulution && fields.resolution.allowedValues
-			? fields.resolution.allowedValues[0]
-			: '';
 
 	let payload = {
 		update: {
@@ -47,17 +43,13 @@ export async function closeIssue(
 				}
 			]
 		},
-		fields: {},
+		fields: {
+			resolution: fields.resolution.allowedValues[0]
+		},
 		transition: {
 			id: transitionId
 		}
 	};
-
-	if (resolution) {
-		payload.fields = {
-			resolution
-		};
-	}
 
 	return await api.post(`/issue/${jiraIssue.id}/transitions`, {
 		body: payload
