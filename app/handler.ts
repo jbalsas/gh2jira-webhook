@@ -16,6 +16,7 @@ import {
 import { createEpic } from './jira/commands/createEpic';
 import { milestoneIssue } from './jira/commands/milestoneIssue';
 import { demilestoneIssue } from './jira/commands/demilestoneIssue';
+import { updateIssueLabels } from './jira/commands/updateIssueLabels';
 
 export async function handler(
 	req: express.Request,
@@ -50,6 +51,11 @@ export async function handler(
 				response = await closeIssue(issue, repository);
 			} else if (action === IssueActions.DEMILESTONED) {
 				response = await demilestoneIssue(issue, repository);
+			} else if (
+				action === IssueActions.LABELED ||
+				action === IssueActions.UNLABELED
+			) {
+				response = await updateIssueLabels(issue, repository);
 			} else if (action === IssueActions.MILESTONED) {
 				response = await milestoneIssue(issue, repository);
 			} else if (action === IssueActions.OPENED) {

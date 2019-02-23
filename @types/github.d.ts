@@ -22,8 +22,8 @@ declare namespace github {
 		url: string;
 	}
 	export interface Issue extends Entity {
-		assignee: object;
-		assigneees: Array<object>;
+		assignee: github.User;
+		assigneees: github.User[];
 		author_association: string;
 		body: string;
 		closed_at: string;
@@ -32,7 +32,7 @@ declare namespace github {
 		created_at: string;
 		events_url: string;
 		labels_url: string;
-		labels: Array<object>;
+		labels: github.Label[];
 		locked: boolean;
 		milestone: github.Milestone;
 		number: number;
@@ -60,6 +60,12 @@ declare namespace github {
 		issue: github.Issue;
 		repository: github.Repository;
 	}
+	export interface Label extends Entity {
+		color: string;
+		default: boolean;
+		id: number;
+		name: string;
+	}
 	export interface Milestone extends Entity {
 		closed_at: string;
 		closed_issues: number;
@@ -84,7 +90,7 @@ declare namespace github {
 	}
 	export interface PullRequest extends Entity {
 		additions: number;
-		assignee: User;
+		assignee: github.User;
 		author_association: string;
 		body: string;
 		changed_files: number;
