@@ -62,7 +62,7 @@
 		}
 	},
 	"map": {
-		"jbalsas/gh2jira-webhook": "GHJIRA",
+		"jbalsas/gh2jira-webhook": "IFI",
 		"jbalsas/gh2jira-webhook-test": "GHJIRA-TEST",
 		"liferay/alloy-editor": "IFI"
 	}
