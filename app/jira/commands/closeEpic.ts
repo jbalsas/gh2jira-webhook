@@ -23,21 +23,21 @@ import { getTransition } from '../queries/getTransition';
 import { ghRepoToJiraTransition } from '../mappings/repo2transition';
 import { getClosedGHMarker } from '../mappings/ghmarker';
 
-export async function closeIssue(
-	issue: github.Issue,
+export async function closeEpic(
+	milestone: github.Milestone,
 	repository: github.Repository
 ): Promise<any> {
 	const transitionConfig = ghRepoToJiraTransition(
-		'task',
+		'epic',
 		'close',
 		repository
 	);
 
 	if (!transitionConfig) {
-		return Promise.reject('Transition Config not found');
+		return Promise.reject('Transition Config not fount');
 	}
 
-	const jiraIssue = await getIssue(issue, repository);
+	const jiraIssue = await getIssue(milestone, repository);
 
 	if (!jiraIssue) {
 		return Promise.reject('Issue not found');
@@ -62,7 +62,7 @@ export async function closeIssue(
 			comment: [
 				{
 					add: {
-						body: getClosedGHMarker(issue)
+						body: getClosedGHMarker(milestone)
 					}
 				}
 			]

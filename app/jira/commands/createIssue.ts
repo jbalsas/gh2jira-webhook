@@ -42,12 +42,6 @@ export async function createIssue(
 		}
 	};
 
-	const labels = issue.labels;
-
-	if (labels) {
-		payload.fields.label = labels.map(label => label.name);
-	}
-
 	const milestone = issue.milestone;
 
 	if (milestone) {

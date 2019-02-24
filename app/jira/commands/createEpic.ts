@@ -41,8 +41,6 @@ export async function createEpic(
 		}
 	};
 
-	console.log(payload);
-
 	return await api.post('/issue', {
 		body: payload
 	});

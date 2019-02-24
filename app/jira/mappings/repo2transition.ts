@@ -1,20 +1,19 @@
 import { github } from '../../../@types/github';
 import { ghRepo2JiraProjectKeys } from './repo2project';
 import config from '../../../config.json';
-import { IConfig } from '../../../@types/config';
+import { IConfig, TransitionConfig } from '../../../@types/config';
 
-export function ghRepoToJiraTransitionId(
+export function ghRepoToJiraTransition(
+	jiraIssueType: string,
 	transitionName: string,
 	repository: github.Repository
-): string {
+): TransitionConfig | undefined {
 	const projectKeys = ghRepo2JiraProjectKeys(repository);
 
 	const transitions = (<IConfig>config).jira.projects[projectKeys]
 		.transitions;
 
 	if (transitions) {
-		return transitions[transitionName] || '';
+		return transitions[jiraIssueType][transitionName];
 	}
-
-	return '';
 }

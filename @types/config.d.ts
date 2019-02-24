@@ -11,17 +11,24 @@ interface ConnectionConfig {
 interface ProjectConfig {
 	createmeta: {
 		type: {
-			[entity: string]: string;
+			[ghEntity: string]: string;
 		};
 	};
 	transitions: {
-		[transition: string]: string;
+		[jiraIssueType: string]: {
+			[transitionName: string]: TransitionConfig;
+		};
 	};
 }
 
 interface ServerConfig {
 	port: number;
 	verifyRequest?: boolean;
+}
+
+export interface TransitionConfig {
+	resolutionName: string;
+	transitionId: string;
 }
 
 interface GithubRepoToJiraProjectMap {

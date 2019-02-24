@@ -37,17 +37,6 @@
 			}
 		},
 		"projects": {
-			"GHJIRA": {
-				"createmeta": {
-					"type": {
-						"issue": "Task",
-						"milestone": "Task"
-					}
-				},
-				"transitions": {
-					"close": "21"
-				}
-			},
 			"IFI": {
 				"createmeta": {
 					"type": {
@@ -56,7 +45,18 @@
 					}
 				},
 				"transitions": {
-					"close": "31"
+					"epic": {
+						"close": {
+							"resolutionName": "Completed",
+							"transitionId": "11"
+						}
+					},
+					"task": {
+						"close": {
+							"resolutionName": "Completed",
+							"transitionId": "31"
+						}
+					}
 				}
 			}
 		}

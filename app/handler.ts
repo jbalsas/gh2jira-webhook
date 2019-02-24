@@ -17,6 +17,7 @@ import { createEpic } from './jira/commands/createEpic';
 import { milestoneIssue } from './jira/commands/milestoneIssue';
 import { demilestoneIssue } from './jira/commands/demilestoneIssue';
 import { updateIssueLabels } from './jira/commands/updateIssueLabels';
+import { closeEpic } from './jira/commands/closeEpic';
 
 export async function handler(
 	req: express.Request,
@@ -71,6 +72,8 @@ export async function handler(
 
 			if (action === MilestoneActions.CREATED) {
 				response = await createEpic(milestone, repository);
+			} else if (action === MilestoneActions.CLOSED) {
+				response = await closeEpic(milestone, repository);
 			}
 		} else if (isPullRequestEvent(req)) {
 			const { action, pull_request } = req.body;
