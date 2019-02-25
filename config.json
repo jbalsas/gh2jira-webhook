@@ -64,6 +64,10 @@
 	"map": {
 		"jbalsas/gh2jira-webhook": "IFI",
 		"jbalsas/gh2jira-webhook-test": "GHJIRA-TEST",
-		"liferay/alloy-editor": "IFI"
+		"liferay/alloy-editor": "IFI",
+		"liferay/clay": "IFI",
+		"liferay/liferay-themes-sdk": "IFI",
+		"liferay/liferay-npm-build-tools": "IFI",
+		"liferay/liferay-npm-scripts": "IFI"
 	}
 }
